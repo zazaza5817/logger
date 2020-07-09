@@ -1,8 +1,8 @@
 import keyboard
 
 
-def print_pressed_keys(e):
-    print(e, e.event_type, e.name)
+def print_pressed_keys(event):
+    print(event)
 
 
 keyboard.hook(print_pressed_keys)
