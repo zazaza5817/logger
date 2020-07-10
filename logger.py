@@ -1,4 +1,3 @@
-import threading
 from threading import Thread
 import logging
 import keyboard
