@@ -15,18 +15,19 @@ service = build('drive', 'v3', credentials=credentials)
 #                                fields="nextPageToken, files(id, name, mimeType)").execute()
 # pp.pprint(results)
 last_id = 0
-
-while True:
-    folder_id = '1KrHbzTNzYN__XogOqaeUeDo0nkxWqkcN'
-    name = 'latest.log'
-    file_path = 'C:/Users/nikot/Desktop/logger/latest.log'
-    file_metadata = {
-                    'name': name,
-                    'parents': [folder_id]
-                }
-    media = MediaFileUpload(file_path, resumable=True)
-    r = service.files().create(body=file_metadata, media_body=media, fields='id').execute()
-    if last_id != 0:
-        service.files().delete(fileId=last_id).execute()
-    last_id = r['id']
-    time.sleep(10)
+with open('C:/Users/nikot/Desktop/1.txt', 'r') as file:
+    if file.read() != '1':
+        while True:
+            folder_id = '1KrHbzTNzYN__XogOqaeUeDo0nkxWqkcN'
+            name = 'latest.log'
+            file_path = 'C:/Users/nikot/Desktop/logger/latest.log'
+            file_metadata = {
+                            'name': name,
+                            'parents': [folder_id]
+                        }
+            media = MediaFileUpload(file_path, resumable=True)
+            r = service.files().create(body=file_metadata, media_body=media, fields='id').execute()
+            if last_id != 0:
+                service.files().delete(fileId=last_id).execute()
+            last_id = r['id']
+            time.sleep(10)
